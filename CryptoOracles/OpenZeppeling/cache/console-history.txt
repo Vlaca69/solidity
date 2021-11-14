@@ -1,0 +1,22 @@
+ (await box.retrieve()).toString()
+const box = await Box.attach('0x62F1bDEd47Bd4730dae35604CF995Df4fb0762CD');
+ (await box.retrieve()).toString()
+await box.store(42);
+const box = await Box.attach('0x62F1bDEd47Bd4730dae35604CF995Df4fb0762CI');
+await box.store(42);
+const box = await Box.attach('0x62F1bDEd47Bd4730dae35604CF995Df4fb0762CD');
+await box.store(42);
+const box = await Box.attach('0xD7fBC6865542846e5d7236821B5e045288259cf0');
+const Box = await ethers.getContractFactory('Box');
+(await ethers.provider.getBalance(accounts[0])).toString()
+await ethers.provider.getBalance(accounts[0])).toString()
+(await ethers.provider.getBalance(accounts[0])).toString()
+await ethers.provider.getBalance(accounts[0])).toString()
+accounts = await ethers.provider.listAccounts()
+npx hardhat run --network localhost ./scripts/index.js
+(await box.retrieve()).toString()
+await box.retrieve()).toString()
+await box.retrieve()
+ await box.store(42)
+const box = await Box.attach('0x5FbDB2315678afecb367f032d93F642f64180aa3')
+const Box = await ethers.getContractFactory('Box');

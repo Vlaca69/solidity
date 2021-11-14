@@ -1,0 +1,10 @@
+{
+  "name": "hardhat-project",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.3.2",
+    "hardhat": "^2.6.7"
+  },
+  "dependencies": {
+    "@imtbl/imx-contracts": "^1.0.0"
+  }
+}
