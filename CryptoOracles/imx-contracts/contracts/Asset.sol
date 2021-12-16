@@ -1,15 +1,14 @@
-// SPDX-License-Identifier: MIT
-//TODO - implement whitelisting 
+// SPDX-License-Identifier: MIT 
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-//import "./Mintable.sol";
 import "@imtbl/imx-contracts/contracts/Mintable.sol";
 
 contract Asset is ERC721, Mintable {
     
     struct Metadata {
-        bytes manifestTx;
+        string dna;
+        string hash;
     }
     
     
@@ -23,7 +22,7 @@ contract Asset is ERC721, Mintable {
         string memory _symbol,
         address _imx
     ) ERC721(_name, _symbol) Mintable(_owner, _imx) {
-        setBaseURI("https://arweave.net/");
+        setBaseURI("https://gateway.pinata.cloud/ipfs/");
     }
     
     function setBaseURI(string memory baseURI) public onlyOwner{
@@ -35,14 +34,15 @@ contract Asset is ERC721, Mintable {
     }
     
 
-
     function _mintFor(
         address user,
         uint256 id,
-        bytes memory manifestTx
+        bytes memory blueprint
     ) internal override{
         //TODO - throw error if id is already used- dont override metadata
-        metadata[id] = Metadata(manifestTx);
+        //encode blueprint at the source (in JavaScript): const data = abiCoder.encode(["string", "string"], [s1, s2])
+        (string memory dna, string memory hash) = abi.decode(blueprint, (string, string));
+        metadata[id] = Metadata(dna, hash);
         _safeMint(user, id);
     }
     
@@ -53,10 +53,10 @@ contract Asset is ERC721, Mintable {
     }
     
     function tokenURI(uint256 _tokenId) public view virtual override returns (string memory){
-        require(_exists(_tokenId), "FUCK you");
-        bytes memory manifestTx = metadata[_tokenId].manifestTx;
+        require(_exists(_tokenId), "Id already exists");
+        string memory hash = metadata[_tokenId].hash;
         string memory baseURI = _baseURI();
-        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, manifestTx)) : "fuck you";
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, hash)) : "URI invalid";
     }
 
 }
