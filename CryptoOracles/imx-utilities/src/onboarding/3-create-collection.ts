@@ -35,12 +35,12 @@ const component = '[IMX-CREATE-COLLECTION]';
    * Edit your values here
    */
   const params: CreateCollectionParams = {
-    name: 'ENTER_COLLECTION_NAME',
+    name: 'Crypto Oracles Gen 0 NFTs',
     // description: 'ENTER_COLLECTION_DESCRIPTION (OPTIONAL)',
     contract_address: collectionContractAddress,
     owner_public_key: ownerPublicKey,
     // icon_url: '',
-    // metadata_api_url: '',
+    metadata_api_url: 'https://gateway.pinata.cloud/ipfs/',
     // collection_image_url: '',
     project_id: parseInt(projectId, 10),
   };

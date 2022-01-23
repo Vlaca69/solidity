@@ -18,7 +18,7 @@ const component = 'imx-bulk-mint-script';
 
 const dna = 'f792cb0cc3c3e6339682941e53698cbc70eef752';
 const hash = 'QmQmvSMDmTtiHVfdPkdeSrcnpuBwDw6iiCBTD8wwQcq2Et';
-const blueprint = defaultAbiCoder.encode(["string", "string"], [dna, hash])
+const blueprint = `${dna},${hash}`;
 
 const waitForTransaction = async (promise: Promise<string>) => {
   const txId = await promise;
@@ -78,7 +78,7 @@ const waitForTransaction = async (promise: Promise<string>) => {
 
   const tokens = Array.from({ length: number }, (_, i) => i).map(i => ({
     id: (tokenId + i).toString(),
-    blueprint: blueprint,
+    blueprint: blueprint//`{${tokenId + i }}:{${blueprint}}`
   }));
 
   const payload: ImmutableMethodParams.ImmutableOffchainMintV2ParamsTS = [
@@ -86,7 +86,7 @@ const waitForTransaction = async (promise: Promise<string>) => {
       contractAddress: env.tokenAddress, // NOTE: a mintable token contract is not the same as regular erc token contract
       users: [
         {
-          etherKey: wallet.toLowerCase(),
+          etherKey: wallet,
           tokens,
         },
       ],

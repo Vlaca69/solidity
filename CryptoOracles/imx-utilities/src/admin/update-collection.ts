@@ -33,7 +33,9 @@ const component = '[IMX-UPDATE-COLLECTION]';
    * Edit your values here
    */
   const params: UpdateCollectionParams = {
-    description: "A unique collection of Crypto Oracles identities to gain access to the Crypto Oracles DAO",
+    //description: "A unique collection of Crypto Oracles identities to gain access to the Crypto Oracles DAO",
+    //name: "Crypto Oracles",
+    metadata_api_url: "https://gateway.pinata.cloud/ipfs/"
   };
 
   let collection;
